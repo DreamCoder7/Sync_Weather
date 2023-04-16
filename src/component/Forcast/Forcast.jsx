@@ -1,44 +1,57 @@
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+
 import { Day } from "../Ui/index";
+import { Forcast as ForcastStyled, ForcastNav } from "../../style/index";
+import { ThemeContext } from "../../Context/theme";
 
-const wheather = [
-  {
-    date: "Monday",
-    time: "11:08:20",
-    temp: "16c",
-    sunSet: "6:02Am",
-    sunRise: "5:04Pm",
-  },
-  {
-    date: "Tuseday",
-    time: "11:08:20",
-    temp: "16c",
-    sunSet: "6:02Am",
-    sunRise: "5:04Pm",
-  },
-  {
-    date: "Wensday",
-    time: "11:08:20",
-    temp: "16c",
-    sunSet: "6:02Am",
-    sunRise: "5:04Pm",
-  },
-  {
-    date: "Thursday",
-    time: "11:08:20",
-    temp: "16c",
-    sunSet: "6:02Am",
-    sunRise: "5:04Pm",
-  },
-];
+const dummyData = {
+  pressure: "12hpa",
+  temp: "20oc",
+  humidity: "10%",
+  sunrise: "2:30Am",
+  sunset: "4:00pm",
+  wind: "12km/hr",
+};
 
-export const Forcast = () => {
-  return wheather.map((w) => (
-    <Day
-      date={w.date}
-      time={w.time}
-      temp={w.temp}
-      sunSet={w.sunSet}
-      sunRise={w.sunRise}
-    />
-  ));
+export const Forcast = ({ location }) => {
+  const [weatherData, setWeatherData] = useState({});
+  const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    axios(
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e33d8662676f8f16e8f623c45f49e64e`
+    ).then((data) => {
+      console.log(data);
+      const formattedData = {
+        ...weatherData,
+        pressure: data.data.main.pressure,
+        temp: data.data.main.temp.toFixed(),
+        humidity: data.data.main.humidity,
+        sunrise: data.data.sys.sunrise,
+        sunset: data.data.sys.sunset,
+        wind: data.data.wind.speed.toFixed(),
+      };
+      setWeatherData(formattedData);
+    });
+  }, [location]);
+
+  return (
+    <ForcastStyled>
+      <ForcastNav theme={theme}>
+        <p>Today Overview</p>
+        <a href="#">More Detail</a>
+      </ForcastNav>
+      <div>
+        <Day
+          humidity={weatherData.humidity}
+          pressure={weatherData.pressure}
+          sunRise={weatherData.sunrise}
+          sunSet={weatherData.sunset}
+          temp={weatherData.temp}
+          wind={weatherData.wind}
+        />
+      </div>
+    </ForcastStyled>
+  );
 };

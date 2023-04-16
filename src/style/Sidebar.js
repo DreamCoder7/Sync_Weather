@@ -7,8 +7,12 @@ export const Sidebar = styled.aside`
   height: 100vh;
   color: #fff;
   background-color: ${(props) =>
-    props.theme === "light" ? "var(--light--mode-2)" : "var(--dark--mode-2)"};
+    props.theme === "light" ? "var(--color--white)" : "var(--dark--mode-2)"};
   transition: background-color 0.4s;
+  box-shadow: 2px 3px 4px
+    ${(props) =>
+      props.theme == "light" ? "var(--color--white)" : "var(--dark--mode-2)"};
+  transition: all 0.4s;
 
   display: flex;
   flex-direction: column;
@@ -35,9 +39,12 @@ export const NavListItem = styled.li`
 export const NavLink = styled.a`
   text-decoration: none;
   font-size: 1.4rem;
+  color: #374151;
 `;
 
-export const NavIcon = styled.img``;
+export const NavIcon = styled.img`
+  width: 2.8rem;
+`;
 
 export const System = styled.div`
   display: flex;
@@ -48,7 +55,7 @@ export const System = styled.div`
 
 export const SystemTitle = styled.h6`
   font-size: 2rem;
-  color: var(--color-primary);
+  color: var(--dark-gray--color);
 `;
 
 export const SystemList = styled.ul`
@@ -68,6 +75,9 @@ export const SystemListItem = styled.li`
 export const SystemLink = styled.a`
   text-decoration: none;
   font-size: 1.6rem;
+  color: var(--dark-gray--color);
 `;
 
-export const SystemIcon = styled.img``;
+export const SystemIcon = styled.img`
+  width: 2.8rem;
+`;

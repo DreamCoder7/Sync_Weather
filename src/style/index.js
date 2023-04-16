@@ -13,7 +13,27 @@ export {
   SystemList,
   SystemListItem,
 } from "./Sidebar";
-export { Toggle, Logo, Search, InputSearch, InputIcon } from "./Ui/Ui";
+export {
+  Toggle,
+  Logo,
+  Search,
+  InputIcon,
+  Day,
+  DayInfo,
+  DayIcon,
+  DayTitle,
+  Wind,
+  Pressure,
+  Humidity,
+  SunRise,
+  SunSet,
+  Temp,
+  Map,
+  MapNav,
+  MapBtn,
+  MapCont,
+  MapTitle,
+} from "./Ui/Ui";
 export {
   Dashboard,
   MainNav,
@@ -21,4 +41,17 @@ export {
   LocationIcon,
   UserInfo,
   UserInfoIcon,
+  OtherInfo,
+  OtherInfoBtn,
+  OtherInfoItem,
+  OtherInfoList,
+  OtherInfoNav,
+  OtherInfoTitle,
+  Rain,
+  RainList,
+  RainTitle,
+  RainProgress,
+  Time,
 } from "./Dashboard";
+
+export { Forcast, ForcastNav } from "./Forcast";
