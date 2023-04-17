@@ -20,7 +20,9 @@ export const Forcast = ({ location }) => {
 
   useEffect(() => {
     axios(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e33d8662676f8f16e8f623c45f49e64e`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${
+        import.meta.env.VITE_OPEN_WEATHER_API
+      }`
     ).then((data) => {
       console.log(data);
       const formattedData = {
